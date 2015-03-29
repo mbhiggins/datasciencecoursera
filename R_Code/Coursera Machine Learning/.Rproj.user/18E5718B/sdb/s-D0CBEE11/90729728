@@ -1,0 +1,16 @@
+{
+    "contents" : "pollutantmean <- function(directory,pollutant,id = 1:332)\n{\n  ## 'directory' is a character vector of length 1 indicating\n  ## the location of the CSV files\n  \n  ## 'pollutant' is a character vector of length 1 indicating\n  ## the name of the pollutant for which we will calculat the \n  ## mean; either \"sulfate\" or \"nitrate\"\n  \n  ## 'id' is an integer vector indicating the monitor ID numbers\n  ## to be used\n  \n  ## Return the mean of the pollutant accross all monitors list\n  ## in the 'id' vector (ignoring NA values)\n\n  zerosid <- formatC(id, width=3, flag=\"0\")\n  ##place 0's at begining for id value 1 -> 001\n \n  filename = paste(directory, zerosid, sep = \"/\")\n  filename1 = paste(filename, \"csv\", sep = \".\")\n\n  tabAll <- do.call(\"rbind\",lapply(filename1,read.csv,header = TRUE))\n  ## Create full table\n  \n  selectpollut <- tabAll[pollutant]\n  ## collect values for pollutant in question\n  \n  polmean <- colMeans(selectpollut,na.rm=TRUE)\n  ##capture mean of field\n  \n  return(polmean)\n  ##return value\n}",
+    "created" : 1427568560960.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2357773340",
+    "id" : "90729728",
+    "lastKnownWriteTime" : 1427654458,
+    "path" : "C:/Users/mbhig_000/datasciencecoursera/R_Code/Coursera Machine Learning/pollutantmean.R",
+    "project_path" : "pollutantmean.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
